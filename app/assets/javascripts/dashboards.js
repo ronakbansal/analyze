@@ -1,18 +1,19 @@
 $(document).ready(function(){
-  student =  gon.student_data;
-  student_data = {values: student, key: 'Student', color: '#2ca02c'}
-  generate_graph(student_data);
+  get_student_data(1);
   $('#student_id').change(function() {
-    var val = $("#student_id option:selected").attr("value");
-    marks_arr = val.split(",");
-    student = [{x: 1, y: parseInt(marks_arr[0])}, {x: 2, y: parseInt(marks_arr[1])}, {x: 3, y: parseInt(marks_arr[2])}]
-    student_data = {values: student, key: 'Student', color: '#2ca02c'}
-    generate_graph(student_data);
-  });
+    student_id = $("#student_id option:selected").attr("value");
+    get_student_data(student_id);
+    });
 });
 
+function get_student_data(student_id){
+   $.getJSON( "student_data.json?id=" + student_id, function(student_data) {
+   generate_graph(student_data);
+   });
+}
+
 function generate_graph(student_data){
-  d3.json("data.json",function(data){
+  d3.json("klass_data.json",function(klass_data){
     nv.addGraph(function() {
       chart = nv.models.lineChart()
            .margin({top: 50, right: 50, bottom: 50, left: 100});
@@ -25,7 +26,7 @@ function generate_graph(student_data){
       .tickFormat(function(d) { return d + "%"; });
 
       d3.select('#chart svg')
-      .datum([data, student_data])
+      .datum([klass_data, student_data])
       .transition().duration(500)
       .call(chart);
 

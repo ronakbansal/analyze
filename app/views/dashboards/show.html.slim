@@ -11,9 +11,9 @@
       thead
         tr
           th.remove_padding Student Name
-          th.remove_padding FA1
-          th.remove_padding FA2
-          th.remove_padding FA3
+          th.remove_padding = @klass.tests[0].name
+          th.remove_padding = @klass.tests[1].name
+          th.remove_padding = @klass.tests[2].name
       tbody
         =render :partial => 'student', :collection => @students
   #chart.right-col
