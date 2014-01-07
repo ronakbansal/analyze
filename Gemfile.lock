@@ -150,5 +150,6 @@ DEPENDENCIES
   rails_12factor
   rails_layout
   sass-rails (~> 3.2.3)
+  slim
   slim-rails
   uglifier (>= 1.0.3)

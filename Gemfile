@@ -9,6 +9,7 @@ gem 'pry'
 gem "nvd3-rails", :github => 'adeven/nvd3-rails', :submodules => true
 gem 'gon'
 gem 'bootstrap-sass'
+gem 'slim'
 group :development do
   gem 'mysql2'
   gem 'rails_layout'
