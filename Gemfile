@@ -6,7 +6,7 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pry'
-gem "nvd3-rails", :git => "git@github.com:adeven/nvd3-rails.git", :submodules => true
+gem "nvd3-rails", :github => 'adeven/nvd3-rails', :submodules => true
 gem 'gon'
 group :development do
   gem 'mysql2'
