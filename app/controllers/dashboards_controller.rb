@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
   def show
     @klass = Klass.first
-
+    @students = Student.all
     test1_marks = Mark.where(test_id: Test.where(name: "FA1").last.id)
     @test1_avg = test1_marks.collect(&:score).sum / test1_marks.count
     test2_marks = Mark.where(test_id: Test.where(name: "FA2").last.id)
@@ -13,6 +13,18 @@ class DashboardsController < ApplicationController
 
     respond_to do |format|
       format.html
+    end
+  end
+
+  def data
+    a = []
+    b  ={}
+    b[:values] = [{x: 1, y: 76}, {x: 2, y: 84}, {x: 3, y: 92}]
+    b[:key] = 'Class 9A'
+    b[:color] = '#ff7f0e'
+    a << b
+    respond_to do |format|
+      format.json { render json: b}
     end
   end
 end

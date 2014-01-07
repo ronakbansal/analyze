@@ -1,49 +1,48 @@
 $(document).ready(function(){
   student =  gon.student_data;
-  generate_graph(student);
+  student_data = {values: student, key: 'Student', color: '#2ca02c'}
+  generate_graph(student_data);
   $('#student_id').change(function() {
     var val = $("#student_id option:selected").attr("value");
     marks_arr = val.split(",");
     student = [{x: 1, y: parseInt(marks_arr[0])}, {x: 2, y: parseInt(marks_arr[1])}, {x: 3, y: parseInt(marks_arr[2])}]
-    generate_graph(student);
+    student_data = {values: student, key: 'Student', color: '#2ca02c'}
+    generate_graph(student_data);
   });
 });
-function generate_graph(student){
-  var data = function() {
-    return [
-      {
-      values: gon.class_data,
-      key: 'Class 9A',
-      color: '#ff7f0e'
-    },
-    {
-      values: student,
-      key: 'Student',
-      color: '#2ca02c'
-    }
-    ];
-  }
 
-  nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+function generate_graph(student_data){
+  d3.json("data.json",function(data){
+    nv.addGraph(function() {
+      chart = nv.models.lineChart()
+           .margin({top: 50, right: 50, bottom: 50, left: 100});
+      chart.xAxis
+      .axisLabel('Tests')
+      .tickFormat(x_format);
 
-    chart.xAxis
-    .axisLabel('Tests')
-    .tickValues([1, 2, 3]);
+      chart.yAxis
+      .axisLabel('Percentage')
+      .tickFormat(function(d) { return d + "%"; });
 
-    chart.yAxis
-    .axisLabel('Percentage');
+      d3.select('#chart svg')
+      .datum([data, student_data])
+      .transition().duration(500)
+      .call(chart);
 
-    d3.select('#chart svg')
-    .datum(data())
-    .transition().duration(500)
-    .call(chart);
+      nv.utils.windowResize(chart.update);
 
-    nv.utils.windowResize(chart.update);
-
-    return chart;
+      return chart;
+    });
   });
-
 }
+
+x_format = function(num) {
+    if (num === 1)
+        return "FA1";
+    else if (num === 2)
+        return "FA2";
+    else if (num === 3)
+        return "SA1";
+};
 
 

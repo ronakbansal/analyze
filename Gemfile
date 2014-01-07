@@ -8,8 +8,10 @@ gem 'rails', '3.2.14'
 gem 'pry'
 gem "nvd3-rails", :github => 'adeven/nvd3-rails', :submodules => true
 gem 'gon'
+gem 'bootstrap-sass'
 group :development do
   gem 'mysql2'
+  gem 'rails_layout'
 end
 group :production do
   gem 'pg'

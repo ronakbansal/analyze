@@ -1,9 +1,0 @@
-<p>
-  <strong>Name:</strong>
-  <%= @klass.name %>
-<% students_array = Student.all.map { |student| [student.name, student.marks.collect(&:score).join(",")] } %>
-<%= select_tag(:student_id, options_for_select(students_array, 1)) %>
-<div id="chart">
-  <svg></svg>
-</div>
-

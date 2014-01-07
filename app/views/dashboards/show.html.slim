@@ -1,0 +1,20 @@
+#container
+  .left-col
+    p
+      strong Class:
+      = @klass.name
+    p
+      strong Student:
+      = select_tag(:student_id, options_for_select(students_array, 1))
+    hr
+    table.table
+      thead
+        tr
+          th.remove_padding Student Name
+          th.remove_padding FA1
+          th.remove_padding FA2
+          th.remove_padding FA3
+      tbody
+        =render :partial => 'student', :collection => @students
+  #chart.right-col
+    svg

@@ -2,6 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#container {
+			overflow: hidden;
+}
+.left-col {
+			float: left;
+			width: 50%;
+}
+.right-col {
+			float: left;
+			width: 50%;
+			margin-right: -1px; /* Thank you IE */
+}
 #chart svg {
-  height: 400px;
+  height: 550px;
+}
+.remove_padding {
+  padding: 0px !important;
 }
